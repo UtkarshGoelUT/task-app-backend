@@ -1,4 +1,4 @@
-const mongodb = require('mongodb');
+const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 const ObjectID = mongodb.ObjectID;
 
@@ -9,22 +9,25 @@ const id = new ObjectID();
 console.log(id);
 
 MongoClient.connect(url, { useNewUrlParser: true }, (error, client) => {
-    if (error) {
-        return console.log('Unable to connect');
-    }
-    console.log('connected');
-    const db = client.db(databaseName);
+	if (error) {
+		return console.log("Unable to connect");
+	}
+	console.log("connected");
+	const db = client.db(databaseName);
 
-    db.collection('tasks').updateMany({}, {
-        $set: {
-            completed: true
-        }
-    }).then(
-        (result) => {
-            console.log(result);
-        }
-    ).catch((error) => {
-        console.log(error);
-    })
-
+	db.collection("tasks")
+		.updateMany(
+			{},
+			{
+				$set: {
+					completed: true,
+				},
+			}
+		)
+		.then((result) => {
+			console.log(result);
+		})
+		.catch((error) => {
+			console.log(error);
+		});
 });
